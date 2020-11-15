@@ -63,18 +63,20 @@ public class IntegerSet{
 	}
 	//Difference
 	public IntegerSet difference(IntegerSet setX, String newName){
-		IntegerSet objNew=new IntegerSet(newName);
+		IntegerSet objNew=  new IntegerSet(newName);
+		objNew.setElements(elements);
 
 		for(int i=0; i<elements.size() || i<setX.getElements().size(); i++){
 			if(elements!=null && setX.getElements()!=null){
-				if(i>=setX.getElements().size()){
-					objNew.getElements().add(elements.get(i));
-				}else if(i>=elements.size()){
-					objNew.getElements().add(setX.getElements().get(i));
-				}	
-				if(i<setX.getElements().size() && i<elements.size() && elements.get(i)!=setX.getElements().get(i) ){
-					objNew.getElements().add(elements.get(i));
-					objNew.getElements().add(setX.getElements().get(i));
+
+				if(i>=elements.size()){
+					if(objNew.getElements().contains(setX.getElements().get(i)) ){
+						objNew.getElements().remove(setX.getElements().get(i));
+					}
+
+				}
+				else if(i>=setX.getElements().size() && elements.get(i)==setX.getElements().get(i) ){
+					objNew.getElements().remove(elements.get(i));
 				}
 			}
 		}
@@ -132,6 +134,9 @@ public class IntegerSet{
 	//Set
 	public void setCardinality(int cardinality){
 		this.cardinality+= cardinality;
+	}
+	public void setElements(ArrayList<Integer> elements){
+		this.elements=elements;
 	}
 
 }
