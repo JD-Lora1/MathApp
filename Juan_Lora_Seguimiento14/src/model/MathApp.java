@@ -1,5 +1,5 @@
 package model;
-import java.util.ArrayList;
+import java.util.*;
 
 public class MathApp{
 
@@ -15,9 +15,12 @@ public class MathApp{
 	}
 
 	public void addSet(String name){
-		IntegerSet setX = new IntegerSet(name);
-		sets.add(setX);
-		amount = sets.size(); 
+		IntegerSet setX = search(name);
+		if(setX==null){
+			setX = new IntegerSet(name);
+			sets.add(setX);	
+		}
+		amount = sets.size();
 	}
 
 	public void removeSet(String name){
@@ -26,25 +29,19 @@ public class MathApp{
 		amount = sets.size(); 
 	}
 
-	public IntegerSet search(String name){
-		IntegerSet setSearch= null;
-		if(sets.indexOf(name)!=-1)
-			setSearch = sets.get(sets.indexOf(name));	
-
-		return setSearch;
-	}
-	public int stringSearch(String name){
-		int x=0;																																				;
-		if(sets.indexOf(name)==-1){
-			x=-1;	
-		}else {
-			x=1;
-		}
-		
-		return x;
-	}
-
 	public void removeElementFromSet(String name, int n){
+		IntegerSet setX = search(name);
+		boolean ctrl=false;
+
+		if(setX.getElements().contains(n))
+			setX.removeElement(n);
+
+		/*for(int i=0; i<setX.getElements().size() && !ctrl; i++){
+			if(setX.getElements().get(i)==n){
+				setX.removeElement(n);
+				ctrl=true;
+			}
+		}*/
 	}
 
 	public void addElementToSet(String name, int n){
@@ -94,5 +91,44 @@ public class MathApp{
 
 	public void intersection(String name1, String name2, String newName){
 	}
-	
+
+	//Search of an IntegerSet object
+	public IntegerSet search(String name){
+		IntegerSet setSearch= null;
+
+		for(int i=0; i<sets.size(); i++){
+			if(sets.get(i).getName().indexOf(name)!=-1)
+				setSearch = sets.get(sets.get(i).getName().indexOf(name));	
+		}	
+		return setSearch;
+	}
+
+	public int stringSearch(String name){
+		int x=-1;
+		IntegerSet objX = new IntegerSet(name);																																				;
+		for(int i=0; i<sets.size(); i++){
+			if(sets.get(i).getName().indexOf(name)==-1){
+				x=-1;	
+			}else{
+				x=1;
+			}
+		}
+		return x;
+	}
+
+	//Search for an element in the IntegerSet
+	public int searchElement(String name, int n){
+		IntegerSet setE = search(name);
+		boolean ctrl=false;
+
+		for(int i=0; i<setE.getElements().size() && !ctrl; i++){
+			if(setE.getElements().get(i)==n){
+				setE.removeElement(n);
+				ctrl=true;
+			}
+		}
+		return 1;
+
+	}
+
 }
