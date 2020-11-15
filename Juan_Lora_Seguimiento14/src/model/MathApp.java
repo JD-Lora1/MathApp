@@ -99,7 +99,7 @@ public class MathApp{
 		if(obj1!=null && obj2!=null){
 			switch(operation){
 				case 1: union(n1, n2, newN);
-						message="Union realizada";
+						message="Union realizada: ";
 						break;
 				case 2: difference(n1, n2, newN);
 						message="Diferencia realizada";
@@ -115,13 +115,12 @@ public class MathApp{
 
 	//(obj n1!=null)
 	public void union(String name1, String name2, String newName){
-		/*
-		IntegerSet obj1 = intSets.get(intSets.search(name1));
-		IntegerSet obj2 = intSets.get(intSets.search(name2));
+		IntegerSet obj1 = search(name1);
+		IntegerSet obj2 = search(name2);
 
 		IntegerSet objNew = obj1.union(obj2, newName);
-		intSets.add(objNew);
-		amount = intSets.size();*/
+		sets.add(objNew);
+		amount = sets.size();
 	}
 
 	public void difference(String name1, String name2, String newName){
@@ -133,14 +132,29 @@ public class MathApp{
 	public void symmetricDifference(String name1, String name2, String newName){
 	}
 
+	public String showInfoSet(String name){
+		IntegerSet objX = search(name);
+		String message="";
+		for(int i=0; i< objX.getElements().size(); i++){
+			message+= objX.getElements().get(i)+" ";
+		}
+		return message;
+	}
+
+	public String showInfoSets(){
+		String message=" ";
+		return message;
+	}
+
 	//Search of an IntegerSet object
 	public IntegerSet search(String name){
 		IntegerSet setSearch= null;
 
 		for(int i=0; i<sets.size(); i++){
-			if(sets.get(i).getName().indexOf(name)!=-1)
-				setSearch = sets.get(sets.get(i).getName().indexOf(name));	
-		}	
+			if(sets.get(i).getName().equals(name))
+				setSearch = sets.get(i);	
+		}
+
 		return setSearch;
 	}
 
