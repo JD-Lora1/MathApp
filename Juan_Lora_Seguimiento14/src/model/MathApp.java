@@ -24,7 +24,6 @@ public class MathApp{
 	public int elementsValidation(){
 		return numberE;
 	}
-
 	//AddSet
 	public void addSet(String name){
 		IntegerSet setX = search(name);
@@ -37,7 +36,6 @@ public class MathApp{
 		}
 		amount = sets.size();
 	}
-
 	//RemoveSet
 	public void removeSet(String name){
 		IntegerSet setX = search(name);
@@ -49,7 +47,6 @@ public class MathApp{
 		}
 		amount = sets.size();
 	}
-
 	//AddElementsToSet
 	public void addElementToSet(String name, int n){
 		IntegerSet setX = search(name);
@@ -105,8 +102,10 @@ public class MathApp{
 						message="Diferencia realizada";
 						break;
 				case 3: intersection(n1, n2, newN);
+						message="Interseccion realizada: ";
 						break;
 				case 4: symmetricDifference(n1, n2, newN);
+						message="Diferencia simetrica realizada: ";
 				default: System.out.println("");
 			}
 		}
@@ -134,10 +133,11 @@ public class MathApp{
 
 	public String showInfoSet(String name){
 		IntegerSet objX = search(name);
-		String message="";
+		String message="{";
 		for(int i=0; i< objX.getElements().size(); i++){
-			message+= objX.getElements().get(i)+" ";
+			message+= objX.getElements().get(i)+", ";
 		}
+		message+="}";
 		return message;
 	}
 
@@ -145,7 +145,6 @@ public class MathApp{
 		String message=" ";
 		return message;
 	}
-
 	//Search of an IntegerSet object
 	public IntegerSet search(String name){
 		IntegerSet setSearch= null;
@@ -154,7 +153,6 @@ public class MathApp{
 			if(sets.get(i).getName().equals(name))
 				setSearch = sets.get(i);	
 		}
-
 		return setSearch;
 	}
 

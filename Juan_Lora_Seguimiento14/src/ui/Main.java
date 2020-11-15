@@ -24,6 +24,7 @@ public class Main{
 					"(5) Crear la union entre dos conjuntos\n"+
 					"(6) Hacer la diferencia entre dos conjuntos\n"+
 					"(7) Hacer la diferencia simetrica\n"+
+					"(8) Mostrar contenido de un conjunto\n"+
 					"(0) Salir" );
 
 			System.out.print(": ");
@@ -44,6 +45,8 @@ public class Main{
 				case 6: difference();
 					break;
 				case 7: symmetricDifference();
+					break;
+				case 8: showInfoSet();
 					break;
 				case 0: System.out.println("  *Fin*");
 					ctrl=true;
@@ -138,22 +141,28 @@ public class Main{
 	public static void difference(){
 		System.out.println("Para hacer la diferencia entre 2 conjuntos, digite:\n");
 		String[] names = receiveSetsNames();
-		if(names!= null)
-			math1.difference(names[0], names[1], names[2]);
+		System.out.println(math1.operationString(names[0], names[1], names[2], 2));
 	}
 
 	public static void intersection(){
 		System.out.println("Para intersectar 2 conjuntos por favor digite:\n");
 		String[] names = receiveSetsNames();
-		if(names!= null)
-			math1.intersection(names[0], names[1], names[2]);
+		System.out.println(math1.operationString(names[0], names[1], names[2], 3));
 	}
 
 	public static void symmetricDifference(){
 		System.out.println("Para hacer diferencia simetrica, digite:\n");
 		String[] names = receiveSetsNames();
-		if(names!= null)
-			math1.intersection(names[0], names[1], names[2]);
+		System.out.println(math1.operationString(names[0], names[1], names[2], 4));
+	}
+
+	public static void showInfoSet(){
+		System.out.println("Para mostrar el contenido , digite:\n");
+		System.out.print("El nombre del conjunto: ");
+		String name = sc.nextLine();
+
+		String message= math1.showInfoSet(name);
+		//System.out.println(message);
 	}
 
 }
