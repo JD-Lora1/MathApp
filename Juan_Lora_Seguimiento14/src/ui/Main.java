@@ -71,9 +71,9 @@ public class Main{
 
 		math1.removeSet(name);
 		if(math1.setsValidation()==1){
-			System.out.println("* Conjunto Creado");
+			System.out.println("* Conjunto borrado");
 		}else if(math1.setsValidation()==-1){
-			System.out.println("* Ya existe un conjunto con el mismo nombre");
+			System.out.println("* No existe este conjunto");
 		}
 	}
 
@@ -132,17 +132,7 @@ public class Main{
 	public static void union(){
 		System.out.println("Para unir 2 conjuntos por favor digite:\n");
 		String[] names = receiveSetsNames();
-		math1.union(names[0], names[1], names[2]);
-
-		if(math1.setsValidation()==-1){
-			System.out.println("* El conjunto n1 No existe");
-		}
-		if(math1.setsValidation()==-2){
-			System.out.println("* El conjunto n2 No existe");
-		}
-		if(math1.setsValidation()==-3){
-			System.out.println("* Ya existe un conjunto con este nombre");
-		}
+		System.out.println(math1.operationString(names[0], names[1], names[2], 1));
 	}
 
 	public static void difference(){

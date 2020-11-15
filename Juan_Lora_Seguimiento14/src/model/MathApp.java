@@ -36,7 +36,6 @@ public class MathApp{
 			number=-1;
 		}
 		amount = sets.size();
-		System.out.println("A:"+amount);
 	}
 
 	//RemoveSet
@@ -48,14 +47,13 @@ public class MathApp{
 		}else{
 			number=-1;
 		}
-		amount = sets.size(); 
-		System.out.println("A:"+amount);
+		amount = sets.size();
 	}
 
 	//AddElementsToSet
 	public void addElementToSet(String name, int n){
 		IntegerSet setX = search(name);
-		if(setX.getElements()!=null){
+		if(setX!=null){
 			if(!setX.getElements().contains(n)){
 				setX.addElement(n);
 				numberE=1;
@@ -72,7 +70,7 @@ public class MathApp{
 	public void removeElementFromSet(String name, int n){
 		IntegerSet setX = search(name);
 
-		if(setX.getElements()!=null){
+		if(setX!=null){
 			if(setX.getElements().contains(n)){
 				setX.removeElement(n);
 				numberE=1;
@@ -97,7 +95,7 @@ public class MathApp{
 			message+="No existe el 2do conjunto. ";
 		IntegerSet objNew= search(newN);
 		if(objNew!=null)
-			message+="Ya hay otro conjunto nombrado igual";
+			message+="Ya hay otro conjunto nombrado '"+newN+"'";
 		if(obj1!=null && obj2!=null){
 			switch(operation){
 				case 1: union(n1, n2, newN);
