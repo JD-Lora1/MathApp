@@ -57,22 +57,23 @@ public class Main{
 		System.out.print("Digite el nombre del nuevo conjunto: ");
 		String name = sc.nextLine();
 
-		if(math1.validateAddSet(name)){
+		math1.addSet(name);
+		if(math1.setsValidation()==1){
 			System.out.println("* Conjunto Creado");
-		}else{
+		}else if(math1.setsValidation()==-1){
 			System.out.println("* Ya existe un conjunto con el mismo nombre");
 		}
-		math1.addSet(name);
 	}
 	
 	public static void removeSet(){
-		System.out.print("¿Que conjunto desea eliminar?: ");
+		System.out.print("Que conjunto desea eliminar?: ");
 		String name = sc.nextLine();
-		if(math1.stringSearch(name)==-1){
-			System.out.println("* Este conjunto No existe");
-		}else{
-			math1.removeSet(name);
-			System.out.println("* Conjunto Eliminado");
+
+		math1.removeSet(name);
+		if(math1.setsValidation()==1){
+			System.out.println("* Conjunto Creado");
+		}else if(math1.setsValidation()==-1){
+			System.out.println("* Ya existe un conjunto con el mismo nombre");
 		}
 	}
 
@@ -83,16 +84,16 @@ public class Main{
 		System.out.print("Numero a agregar: ");
 		int element = sc.nextInt();  sc.nextLine();
 
-		if(math1.stringSearch(name)==-1){
-			System.out.println("* Este conjunto No existe");
-		}else{
-			if(math1.validateElement(name, element)){
+		math1.addElementToSet(name, element);
+
+		if(math1.setsValidation()==-1){
+			System.out.println("* Conjunto Inexistente ");
+		}else if(math1.setsValidation()==1){
+			if(math1.elementsValidation()==1){
 				System.out.println("* Elemento agregado");
 			}else{
-				System.out.println("* Este elemento ya existe en el conjunto");
+				System.out.println("* Este elemento ya existe en este conjunto");
 			}
-
-			math1.addElementToSet(name, element);
 		}
 	}
 
@@ -103,11 +104,15 @@ public class Main{
 		System.out.print("Numero a remover: ");
 		int element = sc.nextInt();   sc.nextLine();
 
-		if(math1.stringSearch(name)==-1){
+		math1.removeElementFromSet(name, element);
+		if(math1.setsValidation()==-1){
 			System.out.println("* Este conjunto No existe");
-		}else{
-			math1.removeElementFromSet(name, element);
-			System.out.println("* Elemento borrado");
+		}else if(math1.setsValidation()==1){
+			if(math1.elementsValidation()==1){
+				System.out.println("* Elemento borrado");
+			}else{
+				System.out.println("* Este elemento No existe");
+			}	
 		}
 	}
 	//For union, difference, intersection, symmetricDifference
@@ -119,37 +124,25 @@ public class Main{
 		System.out.print("Nombre para el nuevo conjunto: ");
 		String newName = sc.nextLine();
 
-		boolean ctrl=true;
-
-		if(math1.stringSearch(name1)==-1){
-			System.out.println("* El conjunto n1 No existe");
-			ctrl=false;
-		}
-		if(math1.stringSearch(name2)==-1){
-			System.out.println("* El conjunto n2 No existe");
-			ctrl=false;
-		}
-		if(math1.stringSearch(newName)==1){
-			System.out.println("* Ya existe un conjunto con este nombre");
-			ctrl=false;
-		}
-
-		String[] names = new String[3];
-
-		if(ctrl){
-			//names = {name1, name2, newName};
-			names[0]=name1;
-			names[1]=name2;
-			names[2]=newName;
-		}
+		String[] names = {name1, name2, newName};
+		
 		return names;
 	}
 
 	public static void union(){
 		System.out.println("Para unir 2 conjuntos por favor digite:\n");
 		String[] names = receiveSetsNames();
-		if(names!= null)
-			math1.union(names[0], names[1], names[2]);
+		math1.union(names[0], names[1], names[2]);
+
+		if(math1.setsValidation()==-1){
+			System.out.println("* El conjunto n1 No existe");
+		}
+		if(math1.setsValidation()==-2){
+			System.out.println("* El conjunto n2 No existe");
+		}
+		if(math1.setsValidation()==-3){
+			System.out.println("* Ya existe un conjunto con este nombre");
+		}
 	}
 
 	public static void difference(){
