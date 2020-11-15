@@ -51,7 +51,7 @@ public class IntegerSet{
 		IntegerSet objNew=null;
 
 		for(int i=0; i<elements.size(); i++){
-			if(!elements.contains(setX.getElements().get(i))){
+			if(elements!=null && !elements.contains(setX.getElements().get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
 			}
@@ -63,7 +63,7 @@ public class IntegerSet{
 		IntegerSet objNew=null;
 
 		for(int i=0; i<elements.size(); i++){
-			if(elements.contains(setX.getElements().get(i))){
+			if(elements!=null && elements.contains(setX.getElements().get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
 			}
@@ -75,14 +75,17 @@ public class IntegerSet{
 		IntegerSet objNew=null;
 
 		for(int i=0; i<elements.size(); i++){
-			if(!elements.contains(setX.getElements().get(i))){
+			if(elements!=null && setX.getElements()!=null && !elements.contains(setX.getElements().get(i))){
+				objNew.getElements().add(setX.getElements().get(i));
+				objNew.setCardinality(1);
+			}
+			if(elements!=null && setX.getElements()!=null && setX.getElements().get(i)!=(elements.get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
 			}
 		}
 		return objNew;
 	}
-
 	//Set
 	public void setCardinality(int cardinality){
 		this.cardinality+= cardinality;

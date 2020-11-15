@@ -93,7 +93,7 @@ public class MathApp{
 		IntegerSet objNew= search(newN);
 		if(objNew!=null)
 			message+="Ya hay otro conjunto nombrado '"+newN+"'";
-		if(obj1!=null && obj2!=null){
+		if(obj1!=null && obj2!=null && objNew==null){
 			switch(operation){
 				case 1: union(n1, n2, newN);
 						message="Union realizada: ";
@@ -123,21 +123,41 @@ public class MathApp{
 	}
 
 	public void difference(String name1, String name2, String newName){
+		IntegerSet obj1 = search(name1);
+		IntegerSet obj2 = search(name2);
+
+		IntegerSet objNew = obj1.difference(obj2, newName);
+		sets.add(objNew);
+		amount = sets.size();
 	}
 
 	public void intersection(String name1, String name2, String newName){
+		IntegerSet obj1 = search(name1);
+		IntegerSet obj2 = search(name2);
+
+		IntegerSet objNew = obj1.intersection(obj2, newName);
+		sets.add(objNew);
+		amount = sets.size();
 	}
 
 	public void symmetricDifference(String name1, String name2, String newName){
+		IntegerSet obj1 = search(name1);
+		IntegerSet obj2 = search(name2);
+
+		IntegerSet objNew = obj1.symmetricDifference(obj2, newName);
+		sets.add(objNew);
+		amount = sets.size();
 	}
 
 	public String showInfoSet(String name){
 		IntegerSet objX = search(name);
-		String message="{";
-		for(int i=0; i< objX.getElements().size(); i++){
-			message+= objX.getElements().get(i)+", ";
+		String message="[";
+		if(objX.getElements()!=null){
+			for(int i=0; i< objX.getElements().size(); i++){
+				message+= objX.getElements().get(i)+"  ";
+			}
 		}
-		message+="}";
+		message+="]";
 		return message;
 	}
 

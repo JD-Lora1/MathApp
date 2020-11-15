@@ -162,7 +162,7 @@ public class Main{
 		String name = sc.nextLine();
 
 		String message= math1.showInfoSet(name);
-		//System.out.println(message);
+		System.out.println(message);
 	}
 
 }
