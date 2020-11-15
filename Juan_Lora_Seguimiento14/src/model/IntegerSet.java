@@ -40,6 +40,29 @@ public class IntegerSet{
 		IntegerSet objNew = new IntegerSet(newName);
 		
 		for(int i=0; i<elements.size(); i++){
+			objNew.getElements().add(setX.getElements().get(i));
+			objNew.getElements().add(elements.get(i));
+			objNew.setCardinality(1);
+		}
+		return objNew;
+	}
+	//Difference
+	public IntegerSet difference(IntegerSet setX, String newName){
+		IntegerSet objNew=null;
+
+		for(int i=0; i<elements.size(); i++){
+			if(!elements.contains(setX.getElements().get(i))){
+				objNew.getElements().add(setX.getElements().get(i));
+				objNew.setCardinality(1);
+			}
+		}
+		return objNew;
+	}
+	//intersection
+	public IntegerSet intersection(IntegerSet setX, String newName){
+		IntegerSet objNew=null;
+
+		for(int i=0; i<elements.size(); i++){
 			if(elements.contains(setX.getElements().get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
@@ -47,19 +70,16 @@ public class IntegerSet{
 		}
 		return objNew;
 	}
-	//Difference
-	public IntegerSet difference(IntegerSet setX, String newName){
-		IntegerSet objNew=null;
-		return objNew;
-	}
-	//intersection
-	public IntegerSet intersection(IntegerSet setX, String newName){
-		IntegerSet objNew=null;
-		return objNew;
-	}
 	//symmetricDifference
 	public IntegerSet symmetricDifference(IntegerSet setX, String newName){
 		IntegerSet objNew=null;
+
+		for(int i=0; i<elements.size(); i++){
+			if(!elements.contains(setX.getElements().get(i))){
+				objNew.getElements().add(setX.getElements().get(i));
+				objNew.setCardinality(1);
+			}
+		}
 		return objNew;
 	}
 
