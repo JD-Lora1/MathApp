@@ -10,6 +10,7 @@ public class IntegerSet{
 
 	public IntegerSet(String name){
 		this.name = name;
+		elements = new ArrayList<Integer>();
 	}
 
 	public String getName(){

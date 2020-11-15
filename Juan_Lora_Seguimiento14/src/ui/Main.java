@@ -56,12 +56,13 @@ public class Main{
 	public static void addSet(){
 		System.out.print("Digite el nombre del nuevo conjunto: ");
 		String name = sc.nextLine();
-		if(math1.stringSearch(name) == 1){
-			System.out.println("* Ya existe un conjunto con el mismo nombre");
-		}else{
-			math1.addSet(name);
+
+		if(math1.validateAddSet(name)){
 			System.out.println("* Conjunto Creado");
+		}else{
+			System.out.println("* Ya existe un conjunto con el mismo nombre");
 		}
+		math1.addSet(name);
 	}
 	
 	public static void removeSet(){
@@ -85,8 +86,13 @@ public class Main{
 		if(math1.stringSearch(name)==-1){
 			System.out.println("* Este conjunto No existe");
 		}else{
+			if(math1.validateElement(name, element)){
+				System.out.println("* Elemento agregado");
+			}else{
+				System.out.println("* Este elemento ya existe en el conjunto");
+			}
+
 			math1.addElementToSet(name, element);
-			System.out.println("* Elemento agregado");
 		}
 	}
 

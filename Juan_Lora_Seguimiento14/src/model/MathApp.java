@@ -21,19 +21,38 @@ public class MathApp{
 			sets.add(setX);	
 		}
 		amount = sets.size();
+		System.out.println("A:"+amount);
+	}
+
+	public boolean validateAddSet(String name){
+		IntegerSet setX = search(name);
+		boolean ctrl=false;
+		if(setX==null){
+			ctrl=true;
+		}
+		return ctrl;
 	}
 
 	public void removeSet(String name){
 		IntegerSet setX = search(name);
 		sets.remove(setX);
 		amount = sets.size(); 
+		System.out.println("A:"+amount);
+	}
+
+	public void addElementToSet(String name, int n){
+		IntegerSet setX = search(name);
+
+		if(!setX.getElements().contains(n)){
+			setX.addElement(n);
+			System.out.println(setX.getElements().size());
+		}
 	}
 
 	public void removeElementFromSet(String name, int n){
 		IntegerSet setX = search(name);
-		boolean ctrl=false;
 
-		if(setX.getElements().contains(n))
+		if(setX.getElements()!=null && setX.getElements().contains(n))
 			setX.removeElement(n);
 
 		/*for(int i=0; i<setX.getElements().size() && !ctrl; i++){
@@ -42,9 +61,6 @@ public class MathApp{
 				ctrl=true;
 			}
 		}*/
-	}
-
-	public void addElementToSet(String name, int n){
 	}
 
 	//(obj n1!=null)
@@ -117,18 +133,13 @@ public class MathApp{
 	}
 
 	//Search for an element in the IntegerSet
-	public int searchElement(String name, int n){
-		IntegerSet setE = search(name);
+	public boolean validateElement(String name, int n){	
+		IntegerSet setX = search(name);
 		boolean ctrl=false;
-
-		for(int i=0; i<setE.getElements().size() && !ctrl; i++){
-			if(setE.getElements().get(i)==n){
-				setE.removeElement(n);
-				ctrl=true;
-			}
+		if(!setX.getElements().contains(n)){
+			ctrl=true;
 		}
-		return 1;
-
+		return ctrl;
 	}
 
 }
