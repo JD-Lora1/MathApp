@@ -53,48 +53,80 @@ public class IntegerSet{
 					objNew.getElements().add(setX.getElements().get(i));
 				}
 			}
-			objNew.setCardinality(1);
 		}
+		for(int j=0; j<objNew.getElements().size(); j++){
+			if(objNew.getElements().indexOf(objNew.getElements().get(j))!=objNew.getElements().lastIndexOf(objNew.getElements().get(j)))
+				objNew.getElements().remove(objNew.getElements().get(j));
+		}
+		objNew.setCardinality(1);
 		return objNew;
 	}
 	//Difference
 	public IntegerSet difference(IntegerSet setX, String newName){
-		IntegerSet objNew=null;
+		IntegerSet objNew=new IntegerSet(newName);
 
-		for(int i=0; i<elements.size(); i++){
-			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && !elements.contains(setX.getElements().get(i))){
-				objNew.getElements().add(setX.getElements().get(i));
-				objNew.setCardinality(1);
+		for(int i=0; i<elements.size() || i<setX.getElements().size(); i++){
+			if(elements!=null && setX.getElements()!=null){
+				if(i>=setX.getElements().size()){
+					objNew.getElements().add(elements.get(i));
+				}else if(i>=elements.size()){
+					objNew.getElements().add(setX.getElements().get(i));
+				}	
+				if(i<setX.getElements().size() && i<elements.size() && elements.get(i)!=setX.getElements().get(i) ){
+					objNew.getElements().add(elements.get(i));
+					objNew.getElements().add(setX.getElements().get(i));
+				}
 			}
 		}
+		for(int j=0; j<objNew.getElements().size(); j++){
+			if(objNew.getElements().indexOf(objNew.getElements().get(j))!=objNew.getElements().lastIndexOf(objNew.getElements().get(j)))
+				objNew.getElements().remove(objNew.getElements().get(j));
+		}
+		objNew.setCardinality(1);
+
 		return objNew;
 	}
 	//intersection
 	public IntegerSet intersection(IntegerSet setX, String newName){
-		IntegerSet objNew=null;
+		IntegerSet objNew=new IntegerSet(newName);
 
-		for(int i=0; i<elements.size(); i++){
-			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && elements.contains(setX.getElements().get(i))){
-				objNew.getElements().add(setX.getElements().get(i));
-				objNew.setCardinality(1);
+		for(int i=0; i<elements.size() || i<setX.getElements().size(); i++){
+			if(elements!=null && setX.getElements()!=null){
+				if(i<setX.getElements().size() && i<elements.size() && elements.get(i)==setX.getElements().get(i) ){
+					objNew.getElements().add(elements.get(i));
+					objNew.getElements().add(setX.getElements().get(i));
+				}
 			}
 		}
+		for(int j=0; j<objNew.getElements().size(); j++){
+			if(objNew.getElements().indexOf(objNew.getElements().get(j))!=objNew.getElements().lastIndexOf(objNew.getElements().get(j)))
+				objNew.getElements().remove(objNew.getElements().get(j));
+		}
+		objNew.setCardinality(1);
 		return objNew;
 	}
 	//symmetricDifference
 	public IntegerSet symmetricDifference(IntegerSet setX, String newName){
-		IntegerSet objNew=null;
+		IntegerSet objNew=new IntegerSet(newName);
 
-		for(int i=0; i<elements.size(); i++){
-			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && !elements.contains(setX.getElements().get(i))){
-				objNew.getElements().add(setX.getElements().get(i));
-				objNew.setCardinality(1);
-			}
-			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && setX.getElements().get(i)!=(elements.get(i))){
-				objNew.getElements().add(setX.getElements().get(i));
-				objNew.setCardinality(1);
+		for(int i=0; i<elements.size() || i<setX.getElements().size(); i++){
+			if(elements!=null && setX.getElements()!=null){
+				if(i>=setX.getElements().size()){
+					objNew.getElements().add(elements.get(i));
+				}else if(i>=elements.size()){
+					objNew.getElements().add(setX.getElements().get(i));
+				}	
+				if(i<setX.getElements().size() && i<elements.size() && elements.get(i)!=setX.getElements().get(i) ){
+					objNew.getElements().add(elements.get(i));
+					objNew.getElements().add(setX.getElements().get(i));
+				}
 			}
 		}
+		for(int j=0; j<objNew.getElements().size(); j++){
+			if(objNew.getElements().indexOf(objNew.getElements().get(j))!=objNew.getElements().lastIndexOf(objNew.getElements().get(j)))
+				objNew.getElements().remove(objNew.getElements().get(j));
+		}
+		objNew.setCardinality(1);
 		return objNew;
 	}
 	//Set
