@@ -39,9 +39,20 @@ public class IntegerSet{
 	public IntegerSet union(IntegerSet setX, String newName){
 		IntegerSet objNew = new IntegerSet(newName);
 		
-		for(int i=0; i<elements.size(); i++){
-			objNew.getElements().add(setX.getElements().get(i));
-			objNew.getElements().add(elements.get(i));
+		for(int i=0; i<elements.size() || i<setX.getElements().size(); i++){
+			if(elements!=null && setX.getElements()!=null){
+				if(i>=setX.getElements().size()){
+					objNew.getElements().add(elements.get(i));
+				}else if(i>=elements.size()){
+					objNew.getElements().add(setX.getElements().get(i));
+				}else if(elements.get(i)==setX.getElements().get(i) ){
+					objNew.getElements().add(elements.get(i));
+				}
+				if(i<setX.getElements().size() && i<elements.size() && elements.get(i)!=setX.getElements().get(i) ){
+					objNew.getElements().add(elements.get(i));
+					objNew.getElements().add(setX.getElements().get(i));
+				}
+			}
 			objNew.setCardinality(1);
 		}
 		return objNew;
@@ -51,7 +62,7 @@ public class IntegerSet{
 		IntegerSet objNew=null;
 
 		for(int i=0; i<elements.size(); i++){
-			if(elements!=null && !elements.contains(setX.getElements().get(i))){
+			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && !elements.contains(setX.getElements().get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
 			}
@@ -63,7 +74,7 @@ public class IntegerSet{
 		IntegerSet objNew=null;
 
 		for(int i=0; i<elements.size(); i++){
-			if(elements!=null && elements.contains(setX.getElements().get(i))){
+			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && elements.contains(setX.getElements().get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
 			}
@@ -75,11 +86,11 @@ public class IntegerSet{
 		IntegerSet objNew=null;
 
 		for(int i=0; i<elements.size(); i++){
-			if(elements!=null && setX.getElements()!=null && !elements.contains(setX.getElements().get(i))){
+			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && !elements.contains(setX.getElements().get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
 			}
-			if(elements!=null && setX.getElements()!=null && setX.getElements().get(i)!=(elements.get(i))){
+			if(elements!=null && setX.getElements()!=null && i<setX.getElements().size() && setX.getElements().get(i)!=(elements.get(i))){
 				objNew.getElements().add(setX.getElements().get(i));
 				objNew.setCardinality(1);
 			}

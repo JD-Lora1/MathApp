@@ -97,15 +97,19 @@ public class MathApp{
 			switch(operation){
 				case 1: union(n1, n2, newN);
 						message="Union realizada: ";
+						message+=showInfoSet(newN);
 						break;
 				case 2: difference(n1, n2, newN);
 						message="Diferencia realizada";
+						message+=showInfoSet(newN);
 						break;
 				case 3: intersection(n1, n2, newN);
 						message="Interseccion realizada: ";
+						message+=showInfoSet(newN);
 						break;
 				case 4: symmetricDifference(n1, n2, newN);
 						message="Diferencia simetrica realizada: ";
+						message+=showInfoSet(newN);
 				default: System.out.println("");
 			}
 		}
@@ -152,7 +156,7 @@ public class MathApp{
 	public String showInfoSet(String name){
 		IntegerSet objX = search(name);
 		String message="[";
-		if(objX.getElements()!=null){
+		if(objX!=null && objX.getElements()!=null){
 			for(int i=0; i< objX.getElements().size(); i++){
 				message+= objX.getElements().get(i)+"  ";
 			}
